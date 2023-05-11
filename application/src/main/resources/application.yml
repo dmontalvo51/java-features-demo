@@ -27,7 +27,7 @@ management:
 
 spring:
   liquibase:
-    change-log: classpath:db/db.changelog-1.0.0.yml
+    change-log: infrastructure:db/db.changelog-1.0.0.yml
     enabled: true
     contexts: development
   jpa:

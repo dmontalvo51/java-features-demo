@@ -5,6 +5,7 @@ import com.globant.ports.AccountPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -15,6 +16,22 @@ public class AccountServiceImpl implements AccountsService {
 
     @Override
     public List<Account> findAllAccounts() {
-        return port.findAllAccounts();
+        List<Account> response=port.findAllAccounts();
+        response.addAll(List.of(mockAccount()));
+        return response;
     }
+
+    /**
+     * Creating a Mock Account to test the List static methods
+     */
+    private Account mockAccount(){
+        return Account.builder()
+                .accountId("8980000001")
+                .balance(BigDecimal.ZERO)
+                .firstName("Mock")
+                .lastName("Account")
+                .type("MockAccount")
+                .build();
+    }
+
 }
