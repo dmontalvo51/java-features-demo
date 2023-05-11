@@ -18,9 +18,9 @@ public class AccountServiceImpl implements AccountsService {
 
     @Override
     public List<Account> findAllAccounts() {
-        var response=port.findAllAccounts()
+        List response=port.findAllAccounts()
                 .stream()
-                .takeWhile(account -> !account.getType().equals("Checking"))
+                .takeWhile(Predicate.not(account -> account.getType().equals("Checking")))
                 .collect(Collectors.toList());
         response.addAll(List.of(createMockAccount()));
         return response;

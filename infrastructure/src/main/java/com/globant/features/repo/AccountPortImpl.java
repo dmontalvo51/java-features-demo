@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
@@ -19,10 +21,21 @@ public class AccountPortImpl implements AccountPort {
 
     @Override
     public List<Account> findAllAccounts() {
-        var response=new ArrayList<Account>();
-        for(var entity:repository.findAll()){
-            response.add(AccountEntityMapper.INSTANCE.domainToModel(entity));
-        }
-        return response;
+
+        var list= repository.findAll()
+                .stream()
+                .map(AccountEntityMapper.INSTANCE::domainToModel)
+                .filter(Predicate.not(account ->
+                        account.getType().isBlank()))
+                .collect(Collectors.toList());
+        list.forEach(account->{
+                    account.setFirstName(account
+                            .getFirstName().strip());
+                    account.setLastName(account
+                            .getLastName().strip());
+                });
+
+
+        return list;
     }
 }

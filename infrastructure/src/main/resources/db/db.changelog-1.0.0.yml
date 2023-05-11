@@ -38,8 +38,8 @@ databaseChangeLog:
          - sql:
              sql: INSERT INTO account(account_id, first_name, last_name, type, balance)
                   VALUES 
-                  ('898100200','Juan','Juarez','Saving',1000.0),
-                  ('898100300','Cesar','Caceres','Checking',2000.0),
-                  ('898100400','Andres','Alvarez','Saving',3000.0),
-                  ('898100500','Boris','Benitez','',5000.0)
-               ;
+                  ('898100200','Juan  ','   Juarez','Saving',1000.0),
+                  ('898100300','Cesar','   Caceres','Checking',2000.0),
+                  ('898100400','  Andres','  Alvarez','Saving',3000.0),
+                  ('898100500','Boris ',' Benitez  ','',5000.0);
+
