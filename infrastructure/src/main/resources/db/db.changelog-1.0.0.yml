@@ -1,0 +1,43 @@
+databaseChangeLog:
+  -  preConditions:
+      -  runningAs:
+           username:  postgres
+  -  changeSet:
+       id:  1
+       author:  dmontalvo
+       changes:
+         -  createTable:
+              tableName:  account
+              columns:
+                -  column:
+                     name:  id
+                     type:  int
+                     autoIncrement:  true
+                     constraints:
+                       primaryKey:  true
+                       nullable:  false
+                -  column:
+                     name:  account_id
+                     type:  varchar(12)
+                -  column:
+                     name:  first_name
+                     type:  varchar(50)
+                -  column:
+                     name:  last_name
+                     type:  varchar(50)
+                -  column:
+                     name:  type
+                     type:  varchar(10)
+                -  column:
+                     name:  balance
+                     type:  double
+  -  changeSet:
+       id: 2
+       author: dmontalvo
+       changes:
+         - sql:
+             sql: INSERT INTO account(account_id, first_name, last_name, type, balance)
+                  VALUES 
+                  ('898100200','Juan','Juarez','Saving',1000.0),
+                  ('898100200','Cesar','Caceres','Checking',2000.0),
+                  ('898100200','Andres','Alvarez','Saving',3000.0);
