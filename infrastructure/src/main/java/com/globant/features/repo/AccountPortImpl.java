@@ -19,13 +19,10 @@ public class AccountPortImpl implements AccountPort {
 
     @Override
     public List<Account> findAllAccounts() {
-        List<AccountEntity> entities= repository.findAll();
-        List<Account> response=new ArrayList<>();
-
-        for(AccountEntity entity:entities){
+        var response=new ArrayList<Account>();
+        for(var entity:repository.findAll()){
             response.add(AccountEntityMapper.INSTANCE.domainToModel(entity));
         }
-
         return response;
     }
 }
